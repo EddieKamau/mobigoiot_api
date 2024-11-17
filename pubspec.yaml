@@ -1,7 +1,7 @@
 name: mobigoiot_api
 description: "A Flutter android plugin for exposing MobigoIOT android SDKS"
 version: 0.0.1
-homepage:
+homepage: https://github.com/EddieKamau/mobigoiot_api
 
 environment:
   sdk: ^3.7.0-41.0.dev
