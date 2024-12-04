@@ -32,7 +32,6 @@ abstract class MobigoiotApiPlatform extends PlatformInterface {
     throw UnimplementedError('printText() has not been implemented.');
   }
 
-
   Future<bool?> printTextFull({required String text, PrinterTextStyle? style}) {
     throw UnimplementedError('printTextFull() has not been implemented.');
   }
@@ -62,5 +61,4 @@ abstract class MobigoiotApiPlatform extends PlatformInterface {
   Stream<ScannerResult?>? getScanResult() {
     throw UnimplementedError('getScanResult() has not been implemented.');
   }
-
 }

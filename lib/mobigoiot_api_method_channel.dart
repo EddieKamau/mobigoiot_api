@@ -8,24 +8,28 @@ import 'mobigoiot_api_platform_interface.dart';
 
 class MethodChannelMobigoiotApi extends MobigoiotApiPlatform {
   @visibleForTesting
-  final printingMethodChannel = const MethodChannel('com.phan_tech/mobigoiot_printing_api');
-  final scanningMethodChannel = const MethodChannel('com.phan_tech/mobigoiot_scanner_api');
-  final scannerEventChannel = const EventChannel('com.phan_tech/mobigoiot_scanner_events_api');
+  final printingMethodChannel =
+      const MethodChannel('com.phan_tech/mobigoiot_printing_api');
+  final scanningMethodChannel =
+      const MethodChannel('com.phan_tech/mobigoiot_scanner_api');
+  final scannerEventChannel =
+      const EventChannel('com.phan_tech/mobigoiot_scanner_events_api');
 
   @override
   Future<bool?> printText(String text) async {
     try {
-      return await printingMethodChannel.invokeMethod<bool>('printText', {"text": text});
+      return await printingMethodChannel
+          .invokeMethod<bool>('printText', {"text": text});
     } catch (_) {
       return null;
     }
   }
 
-
   @override
-  Future<bool?> printTextFull({required String text, PrinterTextStyle? style}) async {
+  Future<bool?> printTextFull(
+      {required String text, PrinterTextStyle? style}) async {
     try {
-      if(style == null){
+      if (style == null) {
         return printText(text);
       }
       return await printingMethodChannel.invokeMethod<bool>('printTextFull', {
@@ -45,7 +49,8 @@ class MethodChannelMobigoiotApi extends MobigoiotApiPlatform {
   @override
   Future<bool?> printBitmap(Uint8List data) async {
     try {
-      return await printingMethodChannel.invokeMethod<bool>('printBitmap', {"data": data});
+      return await printingMethodChannel
+          .invokeMethod<bool>('printBitmap', {"data": data});
     } catch (_) {
       return null;
     }
@@ -93,7 +98,9 @@ class MethodChannelMobigoiotApi extends MobigoiotApiPlatform {
   @override
   Stream<ScannerResult?>? getScanResult() {
     try {
-      return scannerEventChannel.receiveBroadcastStream().map((event)=> ScannerResult.fromMap(event));
+      return scannerEventChannel
+          .receiveBroadcastStream()
+          .map((event) => ScannerResult.fromMap(event));
     } catch (_) {
       return null;
     }

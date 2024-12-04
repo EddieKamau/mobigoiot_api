@@ -6,10 +6,12 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   MethodChannelMobigoiotApi platform = MethodChannelMobigoiotApi();
-  const MethodChannel channel = MethodChannel('com.phan_tech/mobigoiot_printing_api');
+  const MethodChannel channel =
+      MethodChannel('com.phan_tech/mobigoiot_printing_api');
 
   setUp(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
       channel,
       (MethodCall methodCall) async {
         return true;
@@ -18,7 +20,8 @@ void main() {
   });
 
   tearDown(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
   });
 
   test('printText', () async {

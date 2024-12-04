@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin{
+class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   late final TabController tabController;
   final _mobigoiotApiPlugin = MobigoiotApi();
 
@@ -30,35 +30,29 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin{
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Column(
-          children: [
-            TabBar(
-              controller: tabController,
-              tabs: [
+          appBar: AppBar(
+            title: const Text('Plugin example app'),
+          ),
+          body: Column(
+            children: [
+              TabBar(controller: tabController, tabs: [
                 Text('Printer'),
                 Text('Scanner'),
-              ]
-            ),
-            Expanded(
-              child: TabBarView(
+              ]),
+              Expanded(
+                  child: TabBarView(
                 controller: tabController,
                 children: [
                   PrinterTab(_mobigoiotApiPlugin),
                   ScannerTab(_mobigoiotApiPlugin),
                 ],
-              )
-            )
-          ],
-        )
-      ),
+              ))
+            ],
+          )),
     );
   }
 }

@@ -16,7 +16,7 @@ class PrinterTextStyle {
   final bool isUnderlined;
 }
 
-enum PTextSize{
+enum PTextSize {
   size1(1),
   size2(2),
   size3(3),
@@ -25,11 +25,9 @@ enum PTextSize{
 
   final int value;
   const PTextSize(this.value);
-
 }
 
-
-enum PTextDirection{
+enum PTextDirection {
   reversed(1),
   forwad(2),
   other(3);
@@ -38,8 +36,7 @@ enum PTextDirection{
   const PTextDirection(this.value);
 }
 
-
-enum PTextFont{
+enum PTextFont {
   font1(1),
   font2(2),
   font3(3),
@@ -48,10 +45,9 @@ enum PTextFont{
 
   final int value;
   const PTextFont(this.value);
-
 }
 
-enum PTextAlignment{
+enum PTextAlignment {
   center(1),
   right(2),
   left(3);

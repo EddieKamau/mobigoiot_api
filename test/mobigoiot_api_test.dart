@@ -12,24 +12,31 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockMobigoiotApiPlatform
     with MockPlatformInterfaceMixin
     implements MobigoiotApiPlatform {
-
   @override
   Future<bool?> printText(String text) => Future.value(true);
 
   @override
-  Future<bool?> printBitmap(Uint8List data)  => Future.value(true);
+  Future<bool?> printBitmap(Uint8List data) => Future.value(true);
 
   @override
-  Future<bool?> printEndLine()  => Future.value(true);
+  Future<bool?> printEndLine() => Future.value(true);
 
   @override
-  Future<bool?> printTextFull({required String text, PrinterTextStyle? style})  => Future.value(true);
+  Future<bool?> printTextFull(
+          {required String text, PrinterTextStyle? style}) =>
+      Future.value(true);
 
   @override
   Stream<ScannerResult?>? getScanResult() => null;
 
   @override
-  Future<bool?> startScanner({bool turnOnFlash = false, bool turnOnBeep = false, bool turnOnVibration = false, ScannerMode scannerMode = ScannerMode.single, int delay = 500}) => Future.value(true);
+  Future<bool?> startScanner(
+          {bool turnOnFlash = false,
+          bool turnOnBeep = false,
+          bool turnOnVibration = false,
+          ScannerMode scannerMode = ScannerMode.single,
+          int delay = 500}) =>
+      Future.value(true);
 
   @override
   Future<bool?> stopScanner() => Future.value(true);

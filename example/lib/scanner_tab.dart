@@ -3,8 +3,8 @@ import 'package:mobigoiot_api/mobigoiot_api.dart';
 import 'package:mobigoiot_api/scanner_mode.dart';
 
 class ScannerTab extends StatefulWidget {
-  const ScannerTab(this.mobigoiotApi,{super.key});
-  
+  const ScannerTab(this.mobigoiotApi, {super.key});
+
   final MobigoiotApi mobigoiotApi;
 
   @override
@@ -12,7 +12,6 @@ class ScannerTab extends StatefulWidget {
 }
 
 class _ScannerTabState extends State<ScannerTab> {
-
   String data = '';
 
   ScannerMode selectedScanMode = ScannerMode.single;
@@ -23,13 +22,13 @@ class _ScannerTabState extends State<ScannerTab> {
   @override
   void initState() {
     super.initState();
-    widget.mobigoiotApi.getScanResult()?.listen((value){
-    if(mounted){
-      setState(() {
-        data = value?.value ?? '';
-      });
-    }
-  });
+    widget.mobigoiotApi.getScanResult()?.listen((value) {
+      if (mounted) {
+        setState(() {
+          data = value?.value ?? '';
+        });
+      }
+    });
   }
 
   @override
@@ -37,30 +36,32 @@ class _ScannerTabState extends State<ScannerTab> {
     return Column(
       children: [
         // text scanned
-        Text("Data: $data", style: TextStyle(fontSize: 16),),
+        Text(
+          "Data: $data",
+          style: TextStyle(fontSize: 16),
+        ),
 
         // scan mode
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            for(var scanMode in ScannerMode.values)
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(scanMode.name),
-                Radio<ScannerMode>(
-                  value: scanMode, 
-                  groupValue: selectedScanMode, 
-                  onChanged: (val){
-                    if(val != null){
-                      setState(() {
-                        selectedScanMode = val;
-                      });
-                    }
-                  }
-                ),
-              ],
-            ),
+            for (var scanMode in ScannerMode.values)
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(scanMode.name),
+                  Radio<ScannerMode>(
+                      value: scanMode,
+                      groupValue: selectedScanMode,
+                      onChanged: (val) {
+                        if (val != null) {
+                          setState(() {
+                            selectedScanMode = val;
+                          });
+                        }
+                      }),
+                ],
+              ),
           ],
         ),
 
@@ -70,13 +71,12 @@ class _ScannerTabState extends State<ScannerTab> {
           children: [
             Text('Torch On'),
             Switch(
-              value: torchOn, 
-              onChanged: (val){
-                setState(() {
-                  torchOn = val;
-                });
-              }
-            ),
+                value: torchOn,
+                onChanged: (val) {
+                  setState(() {
+                    torchOn = val;
+                  });
+                }),
           ],
         ),
 
@@ -86,13 +86,12 @@ class _ScannerTabState extends State<ScannerTab> {
           children: [
             Text('Vibration On'),
             Switch(
-              value: vibrationOn, 
-              onChanged: (val){
-                setState(() {
-                  vibrationOn = val;
-                });
-              }
-            ),
+                value: vibrationOn,
+                onChanged: (val) {
+                  setState(() {
+                    vibrationOn = val;
+                  });
+                }),
           ],
         ),
 
@@ -102,46 +101,45 @@ class _ScannerTabState extends State<ScannerTab> {
           children: [
             Text('Sount On'),
             Switch(
-              value: sountOn, 
-              onChanged: (val){
-                setState(() {
-                  sountOn = val;
-                });
-              }
-            ),
+                value: sountOn,
+                onChanged: (val) {
+                  setState(() {
+                    sountOn = val;
+                  });
+                }),
           ],
         ),
 
         // duration
 
-
         // start
         ElevatedButton(
-          onPressed: () async {
-            final res = await widget.mobigoiotApi.startScanner(turnOnFlash: torchOn, turnOnVibration: vibrationOn, turnOnBeep: sountOn, scannerMode: selectedScanMode);
-            if(context.mounted){
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(res == true ?  "Started" : "Failed")
-              ));
-            }
-
-          }, 
-          child: Text('Start Scanner')
+            onPressed: () async {
+              final res = await widget.mobigoiotApi.startScanner(
+                  turnOnFlash: torchOn,
+                  turnOnVibration: vibrationOn,
+                  turnOnBeep: sountOn,
+                  scannerMode: selectedScanMode);
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(res == true ? "Started" : "Failed")));
+              }
+            },
+            child: Text('Start Scanner')),
+        SizedBox(
+          height: 20,
         ),
-        SizedBox(height: 20,),
 
         // stop
         ElevatedButton(
-          onPressed: () async {
-            final res = await widget.mobigoiotApi.stopScanner();
-            if(context.mounted){
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(res == true ?  "Stopped" : "Failed")
-              ));
-            }
-          }, 
-          child: Text('Stop Scanner')
-        ),
+            onPressed: () async {
+              final res = await widget.mobigoiotApi.stopScanner();
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(res == true ? "Stopped" : "Failed")));
+              }
+            },
+            child: Text('Stop Scanner')),
       ],
     );
   }
