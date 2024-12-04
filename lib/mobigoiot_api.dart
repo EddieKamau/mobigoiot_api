@@ -62,17 +62,15 @@ class MobigoiotApi {
       turnOnVibration: turnOnVibration,
     );
     
-      print(start);
     if(start != true){
       return null;
     }
 
     // get first result
     final result = await MobigoiotApiPlatform.instance.getScanResult()?.first;
-    print(result);
 
     // stop
-    // await MobigoiotApiPlatform.instance.stopScanner();
+    await MobigoiotApiPlatform.instance.stopScanner();
 
 
     return result;
