@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:mobigoiot_api/printer_text_style.dart';
+import 'package:mobigoiot_api/scanner_mode.dart';
+import 'package:mobigoiot_api/scanner_result.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'mobigoiot_api_method_channel.dart';
@@ -41,6 +43,24 @@ abstract class MobigoiotApiPlatform extends PlatformInterface {
 
   Future<bool?> printEndLine() {
     throw UnimplementedError('printEndLine() has not been implemented.');
+  }
+
+  Future<bool?> startScanner({
+    bool turnOnFlash = false,
+    bool turnOnBeep = false,
+    bool turnOnVibration = false,
+    ScannerMode scannerMode = ScannerMode.single,
+    int delay = 500,
+  }) {
+    throw UnimplementedError('startScanner() has not been implemented.');
+  }
+
+  Future<bool?> stopScanner() {
+    throw UnimplementedError('stopScanner() has not been implemented.');
+  }
+
+  Stream<ScannerResult?>? getScanResult() {
+    throw UnimplementedError('getScanResult() has not been implemented.');
   }
 
 }
