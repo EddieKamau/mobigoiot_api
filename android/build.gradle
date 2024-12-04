@@ -51,8 +51,10 @@ android {
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.0.0")
 //        implementation files('libs/MobiIotAPI.jar')
-        implementation files('libs/MOBIIOT_API.jar')
+//        implementation files('libs/MOBIIOT_API.jar')
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
     }
+
 
     testOptions {
         unitTests.all {

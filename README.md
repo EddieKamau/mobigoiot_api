@@ -27,6 +27,10 @@ import 'package:mobigoiot_api/mobigoiot_api.dart';
 ```dart
 final _mobigoiotApiPlugin = MobigoiotApi();
 
+```
+
+# Printing
+```dart
 // Print simple text
 await _mobigoiotApiPlugin.printText("Hello, World!");
 
@@ -48,10 +52,26 @@ await _mobigoiotApiPlugin.printBitmap(imageData);
 
 // End line after printing
 await _mobigoiotApiPlugin.printEndLine();
+```
+
+# Qr and Bar Code Scanner
+```dart
+// startScanner
+await _mobigoiotApiPlugin.startScanner();
+await _mobigoiotApiPlugin.startScanner(turnOnFlash: true, turnOnBeep: true, turnOnVibration: false, scannerMode: ScannerMode.single, int delay = 500);
+
+// stopScanner
+await _mobigoiotApiPlugin.stopScanner();
+
+// getScanResult
+_mobigoiotApiPlugin.getScanResult()?.listen((value){
+      data = value?.value ?? '';
+});
 
 ```
 
 ## API Reference
+## Printing
 - **`printText(String text): Future<bool?>`**  
   Prints plain text.
 
@@ -63,3 +83,9 @@ await _mobigoiotApiPlugin.printEndLine();
 
 - **`printEndLine(): Future<bool?>`**  
   Sends a line end command, useful for ending the current print session.
+
+  
+## Qr & Bar code Scanner
+- **`startScanner({bool turnOnFlash = false, bool turnOnBeep = false, bool turnOnVibration = false, ScannerMode scannerMode = ScannerMode.single, int delay = 500})`**  
+  Starts the Scanner.
+  When `scannerMode = ScannerMode.trigger`, the scanner will be controlled by the camera button 
